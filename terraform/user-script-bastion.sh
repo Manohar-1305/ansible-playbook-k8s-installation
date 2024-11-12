@@ -8,8 +8,8 @@ user_ssh_dir="$user_home/.ssh"
 
 # Check if user already exists
 if id "$user_name" &>/dev/null; then
-echo "User $user_name already exists."
-exit 1
+  echo "User $user_name already exists."
+  exit 1
 fi
 
 # create a user
@@ -57,3 +57,8 @@ chown -R $user_name:$user_name $user_name
 cd
 # Navigate to home directory and log a message
 cd $user_home && echo "correct till this step" >>bastion.log 2>&1
+
+git clone "https://github.com/Manohar-1305/ansible-playbook-k8s-installation.git"
+
+INVENTORY_FILE="ansible-playbook-k8s-installation/inventories/inventory.ini"
+LOG_FILE="ansible_script.log"
