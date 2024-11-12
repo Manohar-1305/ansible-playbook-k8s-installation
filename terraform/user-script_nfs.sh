@@ -1,5 +1,5 @@
 sudo su -
-
+sleep 60
 user_name="ansible-user"
 user_home="/home/$user_name"
 user_ssh_dir="$user_home/.ssh"
