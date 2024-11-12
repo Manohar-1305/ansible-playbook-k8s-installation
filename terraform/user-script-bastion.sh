@@ -60,5 +60,5 @@ cd $user_home && echo "correct till this step" >>bastion.log 2>&1
 
 git clone "https://github.com/Manohar-1305/ansible-playbook-k8s-installation.git"
 
-INVENTORY_FILE="ansible-playbook-k8s-installation/inventories/inventory.ini"
+INVENTORY_FILE="ansible-playbook-k8s-installation/ansible/inventories/inventory.ini"
 LOG_FILE="ansible_script.log"
