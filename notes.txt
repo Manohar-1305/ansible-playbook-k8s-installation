@@ -1,0 +1,127 @@
+PS C:\Users\Manohar Shetty\Desktop\aws-kubeadm-cluster> terraform plan                
+╷
+│ Error: Reference to undeclared resource
+│ 
+│   on 10.create-instances.tf line 9, in resource "aws_instance" "bastion":
+│    9:     aws_security_group.web-traffic.id,
+│ 
+│ A managed resource "aws_security_group" "web-traffic" has not been declared in the root
+│ module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on 10.create-instances.tf line 30, in resource "aws_instance" "nfs_server":
+│   30:     aws_security_group.open_accessfromvpc.id,
+│
+│ A managed resource "aws_security_group" "open_accessfromvpc" has not been declared in the  
+│ root module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on 10.create-instances.tf line 51, in resource "aws_instance" "load-balancer-server":    
+│   51:     aws_security_group.web-traffic.id,
+│
+│ A managed resource "aws_security_group" "web-traffic" has not been declared in the root    
+│ module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on 10.create-instances.tf line 52, in resource "aws_instance" "load-balancer-server":    
+│   52:     aws_security_group.open_accessfromvpc.id,
+│
+│ A managed resource "aws_security_group" "open_accessfromvpc" has not been declared in the  
+│ root module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on 10.create-instances.tf line 53, in resource "aws_instance" "load-balancer-server":    
+│   53:     aws_security_group.haproxy_sg.id,
+│
+│ A managed resource "aws_security_group" "haproxy_sg" has not been declared in the root     
+│ module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on 10.create-instances.tf line 75, in resource "aws_instance" "master-server":
+│   75:     aws_security_group.open_accessfromvpc.id,
+│
+│ A managed resource "aws_security_group" "open_accessfromvpc" has not been declared in the  
+│ root module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on 10.create-instances.tf line 76, in resource "aws_instance" "master-server":
+│   76:     aws_security_group.haproxy_sg.id,
+│
+│ A managed resource "aws_security_group" "haproxy_sg" has not been declared in the root     
+│ module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on 10.create-instances.tf line 79, in resource "aws_instance" "master-server":
+│   79:     aws_security_group.etcd_ingress.id,
+│
+│ A managed resource "aws_security_group" "etcd_ingress" has not been declared in the root   
+│ module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on 10.create-instances.tf line 80, in resource "aws_instance" "master-server":
+│   80:     aws_security_group.node_port_group.id,
+│
+│ A managed resource "aws_security_group" "node_port_group" has not been declared in the     
+│ root module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on 10.create-instances.tf line 81, in resource "aws_instance" "master-server":
+│   81:     aws_security_group.elb_sg.id,
+│
+│ A managed resource "aws_security_group" "elb_sg" has not been declared in the root module. 
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on 10.create-instances.tf line 103, in resource "aws_instance" "worker-server":
+│  103:     aws_security_group.open_accessfromvpc.id,
+│
+│ A managed resource "aws_security_group" "open_accessfromvpc" has not been declared in the  
+│ root module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on 10.create-instances.tf line 106, in resource "aws_instance" "worker-server":
+│  106:     aws_security_group.etcd_ingress.id,
+│
+│ A managed resource "aws_security_group" "etcd_ingress" has not been declared in the root   
+│ module.
+╵
+SHA256:t7MTQmGm81yTA/Bg/5hbedMxrsZ/aehX0kZ+ReRZH5k
+╷
+│ Error: Reference to undeclared resource
+│
+│   on 4.route_table_public.tf line 10, in resource "aws_route" "dev_route_1":
+│   10:   gateway_id             = aws_internet_gateway.dev_igw.id
+│
+│ A managed resource "aws_internet_gateway" "dev_igw" has not been declared in the root      
+│ module.
+╵
+╷
+│ Error: Reference to undeclared resource
+│
+│   on 6.route_table_private.tf line 7, in resource "aws_route_table" "private_route_table": 
+│    7:     nat_gateway_id = aws_nat_gateway.nat_gateway.id
+│
+│ A managed resource "aws_nat_gateway" "nat_gateway" has not been declared in the root       
+│ module.
+╵
