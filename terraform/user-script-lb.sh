@@ -3,7 +3,6 @@
 sudo su -
 sleep 60
 # User creation
-#!/bin/bash
 
 user_name="ansible-user"
 user_home="/home/$user_name"
