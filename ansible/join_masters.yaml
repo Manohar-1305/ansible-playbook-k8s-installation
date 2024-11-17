@@ -1,0 +1,27 @@
+---
+- name: Generate join Command for adding new master
+  hosts: master1
+  become: yes
+  tasks:
+    -name: Add new master
+    hosts: matser2,master3
+    become: yes
+    tasks:
+      - name: Generate join command for new masters
+        command: kubeadm token create --print-join-command
+        register: join_command
+        environment:
+          KUBECONFIG: /home/ansible-user/.kube/config
+
+      - name: Check if node is part of cluster
+        command: kubectl get nodes --no-header -o custom-columns=":metadata.name"
+        register: cluster_nodes
+        enviroment:
+          KUBECONFIG: /home/ansible-user/.kube/config
+        change_when: false
+
+      - name: Join master node to the cluster
+        command: "{{ hostvars['master1']['join_command']['stdout'] }} --control-plane"
+        when: inventory_hostname not in cluster_nodes.stdout
+        environment:
+          KUBECONFIG: /home/ansible-user/.kube/config
