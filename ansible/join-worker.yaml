@@ -28,7 +28,7 @@
       gather_facts: no
       command: "{{ hostvars['master1'].join_command }}"
       environment:
-        KUBECONFIG: /etc/kubernetes/kubelet.conf
+        KUBECONFIG: /home/ansible-user/.kube/config
       delegate_to: "{{ item }}"  
       with_items: "{{ groups['node'] }}"  
       register: join_result
