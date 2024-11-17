@@ -17,8 +17,8 @@
       copy:
         content: "{{ join_command }}"
         dest: /etc/kubernetes/join_command.txt
-        mode: '0644'  # Ensure proper permissions for the file
-
+        mode: '0644'  
+        
     - name: Print join command
       debug:
         msg: "{{ join_command }}"
