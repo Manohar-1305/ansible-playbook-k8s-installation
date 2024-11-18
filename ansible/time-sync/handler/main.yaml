@@ -1,3 +1,0 @@
-- name: Synchronize time immediately
-  command: chronyc makestep
-  ignore_errors: yes
