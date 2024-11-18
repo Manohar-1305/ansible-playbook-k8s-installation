@@ -15,15 +15,15 @@
     content: |
       overlay
       br_netfilter
-  dest: /etc/modules-load.d/containerd.conf
+    dest: /etc/modules-load.d/containerd.conf
 
-- name: Set systctl parameters for kubernetes
+- name: Set sysctl parameters for Kubernetes
   copy:
-  content: |
-    net.bridge.bridge-nf-call-iptables  = 1
-    net.ipv4.ip_forward                 = 1
-    net.bridge.bridge-nf-call-ip6tables = 1
-  dest: /etc/sysctl.d/99-kubernetes-cri.conf
+    content: |
+      net.bridge.bridge-nf-call-iptables  = 1
+      net.ipv4.ip_forward                 = 1
+      net.bridge.bridge-nf-call-ip6tables = 1
+    dest: /etc/sysctl.d/99-kubernetes-cri.conf
 
 - name: Apply sysctl parameters
   become: yes
