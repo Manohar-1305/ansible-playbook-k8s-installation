@@ -7,7 +7,7 @@
     - name: Generate kubeadm join command
       shell: kubeadm token create --print-join-command --ttl 24h
       register: join_command_output
-      changed_when: false  
+      changed_when: false
 
     - name: Set join command as a fact
       set_fact:
@@ -17,27 +17,28 @@
       copy:
         content: "{{ join_command }}"
         dest: /etc/kubernetes/join_command.txt
-        mode: '0644'  
-        
+        mode: '0644'
+
     - name: Print join command
       debug:
         msg: "{{ join_command }}"
 
+- name: Join worker nodes to the Kubernetes cluster
+  hosts: localhost
+  gather_facts: no
+  tasks:
     - name: Join worker nodes to the Kubernetes cluster
-      become: yes
-      gather_facts: no
-      command: "{{ hostvars['master1'].join_command }}"
+      command: "{{ hostvars['master1']['join_command'] }}"
       environment:
         KUBECONFIG: /home/ansible-user/.kube/config
-      delegate_to: "{{ item }}"  
-      with_items: "{{ groups['node'] }}"  
+      delegate_to: "{{ item }}"
+      with_items: "{{ groups['node'] }}"
       register: join_result
-      changed_when: true  
 
     - name: Restart kubelet after joining the cluster
       systemd:
         name: kubelet
         state: restarted
-        enabled: yes  
-      delegate_to: "{{ item }}"  
-      with_items: "{{ groups['node'] }}" 
+        enabled: yes
+      delegate_to: "{{ item }}"
+      with_items: "{{ groups['node'] }}"
