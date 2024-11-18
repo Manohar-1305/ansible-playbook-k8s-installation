@@ -7,8 +7,7 @@
   shell: |
     modprobe overlay
     modprobe br_netfilter
-  args:
-    warn: false
+
 
 - name: Ensure kernel modules are loaded at boot
   copy:
