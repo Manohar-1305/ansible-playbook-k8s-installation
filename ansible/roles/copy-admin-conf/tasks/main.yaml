@@ -1,12 +1,18 @@
 
-    - name: Check if admin.conf already exists on the controller
-      stat:
-        path: /etc/kubernetes/admin.conf
-      register: admin_conf_stat
+- name: Check if admin.conf exists on the managed node
+  stat:
+    path: /etc/kubernetes/admin.conf
+  register: admin_conf_stat
 
-    - name: Fetch admin.conf from managed node if not already fetched
-      fetch:
-        src: /etc/kubernetes/admin.conf
-        dest: /tmp/admin.conf
-        flat: yes
-      when: not admin_conf_stat.stat.exists
+- name: Ensure destination directory exists on bastion
+  delegate_to: master1
+  file:
+    path: /tmp/
+    state: directory
+
+- name: Fetch admin.conf from managed node if it exists
+  fetch:
+    src: /etc/kubernetes/admin.conf
+    dest: /tmp/admin.conf
+    flat: yes
+  when: admin_conf_stat.stat.exists
