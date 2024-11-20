@@ -36,6 +36,7 @@
 
 # Install NFS Subdir External Provisioner using Helm
 - name: Install NFS Subdir External Provisioner using Helm
+  delegate: worker1
   shell: |
     helm install nfs-subdir-external-provisioner \
     nfs-subdir-external-provisioner/nfs-subdir-external-provisioner \
