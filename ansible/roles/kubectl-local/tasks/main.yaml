@@ -66,7 +66,7 @@
     state: absent
   when: admin_conf_stat.stat.exists
 - name: Set ownership and permissions of fetched config file on Ansible control node
-  delegate_to: master
+  delegate_to: master1
   file:
     path: /home/ansible-user/.kube/config
     owner: ansible-user
