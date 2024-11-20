@@ -42,7 +42,7 @@
   register: admin_conf_stat
 
 - name: Fetch admin.conf from remote node if not already fetched
-  delegate_to: master
+  delegate_to: master1
   become: yes
   fetch:
     remote_src: yes
