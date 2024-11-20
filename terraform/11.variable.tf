@@ -48,5 +48,5 @@ variable "instance_type_worker" {
 variable "instance_type_nfs" {
   description = "The instance type for the NFS server"
   type        = string
-  default     = "t2.medium"  # Adjust to the desired instance type
+  default     = "t2.medium" 
 }
