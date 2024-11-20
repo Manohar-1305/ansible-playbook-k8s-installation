@@ -45,18 +45,24 @@ chown -R $user_name:$user_name $user_home
 # DELETE THE EXISTING KEY
 aws s3 rm s3://my-key/server.pub
 
-sudo aws s3 cp $user_ssh_dir/id_rsa.pub s3://my-key/server.pub
+aws s3 cp $user_ssh_dir/id_rsa.pub s3://my-key/server.pub
 
-#Login to user
+#logi =n into user
+user_name="ansible-user"
+user_home="/home/$user_name"
+user_ssh_dir="$user_home/.ssh"
 ssh_key_path="$user_ssh_dir/authorized_keys"
 
-sudo aws s3cp s3://my-key/server.pub $ssh_key_path
-sudo chmod 600 $ssh_key_path
-sudo chown -R $user_name:$user_name $user_name
+mkdir -p $user_ssh_dir
+chmod 700 $user_ssh_dir
+
+aws s3 cp s3://my-key/server.pub $ssh_key_path
+chmod 600 $ssh_key_path
+chown -R $user_name:$user_name $user_home
 
 cd
 # Navigate to home directory and log a message
-cd $user_home && echo "correct till this step" >>bastion.log 2>&1
+cd $user_home && echo "correct till this step" >>main-data.log 2>&1
 
 git clone "https://github.com/Manohar-1305/ansible-playbook-k8s-installation.git"
 
